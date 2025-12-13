@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Research</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Research Lab, Home, Michigan State University">
+      <meta name="author" content="">
+      <!-- Le styles -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+      <link href="css/theme.css" rel="stylesheet">
+
+      <style>
+         /* 通用：所有 research 轮播窗口的默认宽度和布局 */
+         .research-carousel {
+           max-width: 1000px;              /* 默认最大宽度 */
+           margin: 0 auto 32px auto;       /* 居中 + 和下面内容空一点 */
+         }
+       
+         /* 通用：carousel 内部窗口的默认高度（可以看做“基准高度”） */
+         .research-carousel .carousel-inner {
+           height: 480px;                  /* 默认高度，你可以根据整体感觉调 */
+           background-color: #f8f8f8;      /* 背景色，图片没铺满时的空白颜色 */
+         }
+         /* 让每一页的 .item 也撑满整个 carousel-inner 的高度 */
+         .research-carousel .item {
+         height: 100%;
+         }
+
+         /* 让内部包裹层成为 flex 容器，用来做水平 + 垂直居中 */
+         .research-carousel .img-wrap {
+           height: 100%;
+           width: 100%;
+           display: flex;
+           align-items: center;            /* 垂直居中 */
+           justify-content: center;        /* 水平居中 */
+         }
+       
+         /* 图片：只限制最大宽高，不拉伸、不裁剪 */
+         .research-carousel .img-wrap img {
+           max-width: 100%;
+           max-height: 100%;
+           display: block;
+         }
+       
+         /* ================== 单独客制化每一个窗口的高度 ================== */
+       
+         /* 第一组窗口：方向 1（想要更高一点，比如 520） */
+         #researchCarousel1 .carousel-inner {
+           height: 300px;
+         }
+       
+         /* 第二组窗口：方向 2（稍微矮一点，比如 450） */
+         #researchCarousel2 .carousel-inner {
+           height: 450px;
+         }
+       
+         /* 第三组窗口：方向 3（再矮一点，比如 420） */
+         #researchCarousel3 .carousel-inner {
+           height: 380px;
+         }
+       
+         /* 第四组窗口：方向 4（和默认一样，或者你也可以给个自己的高度） */
+         #researchCarousel4 .carousel-inner {
+           height: 480px;
+         }
+         /* ================== Collaborator logo grid ================== */
+
+         .collab-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);  /* 3 列 */
+            gap: 24px;                              /* 图片之间的间距 */
+            max-width: 900px;
+            margin: 20px auto 40px auto;            /* 居中 */
+         }
+
+         .collab-item {
+            width: 100%;
+            height: 120px;                          /* 每个 logo “框”的高度，可调 */
+            display: flex;
+            align-items: center;                    /* 垂直居中 */
+            justify-content: center;                /* 水平居中 */
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px;
+         }
+
+         .collab-item img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;                    /* 不裁图，完整显示 */
+            display: block;
+         }
+         /* ================== Custom Header Banner ================== */
+         #overview {
+            background-image: url("images/header_1.png");  /* ← 换成你的背景图文件名 */
+            background-size: cover;        /* 自动铺满，不变形 */
+            background-position: center;   /* 居中对齐 */
+            background-repeat: no-repeat;
+            height: 100px;                 /* 横幅高度，可调 200–400px */
+            border-radius: 2px;           /* 可选，让边缘更柔和 */
+            position: relative;
+            color: white;                  /* 文本颜色改为白色 */
+            text-align: center;            /* 居中标题 */
+            padding-top: 60px;             /* 让文字往下移一点，更好看 */
+         }
+
+         #overview h1 {
+            font-size: 40px;               /* 标题大小，可调整 */
+            font-weight: 700;
+            text-shadow: 0px 0px 8px rgba(0,0,0,0.6);   /* 让白字更清晰 */
+         }
+
+         #overview .lead {
+            font-size: 22px;
+            text-shadow: 0px 0px 6px rgba(0,0,0,0.6);
+         }
+
+       </style>
+       
+       
+       
+       
+ 
+   </head>
+   <body>
+      <div class="container">
+         <header class="jumbotron subhead" id="overview">
+            <p class="lead"> Michigan State University </p>
+            <h1>3D Computational Biology Lab</h1>
+         </header>
+         <div class="masthead">
+            <div class="navbar">
+               <div class="navbar-inner">
+                  <div class="container">
+                     <ul class="nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="people.html">People</a></li>
+                        <li class="active"><a href="#">Research</a></li>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="teaching.html">Teaching</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <hr>
+         <div class="row-fluid">
+            <!-- 左侧导航：Research + Collaborators -->
+            <div class="span3 bs-docs-sidebar" id="navparent">
+               <ul class="nav nav-list bs-docs-sidenav" data-spy="affix" data-offset-top="200" data-offset-bottom="260">
+                  <li class="active"><a href="#research">Research</a></li>
+                  <li><a href="#software">Software</a></li>
+                  <li><a href="#collaborators">Collaborators</a></li>
+               </ul>
+            </div>
+
+            <!-- 右侧主体 -->
+            <div class="span8 offset1">
+               <!-- ================== Research Section ================== -->
+               <section id="research">
+                  <div class="page-header">
+                     <h3>Research</h3>
+                  </div>
+
+                  <!-- 1 -->
+                  <h4>Systems-level prediction of long-range gene regulatory networks and the underlying molecular mechanisms</h4>
+                  <p>
+                    We develop computational and statistical algorithms (probabilistic graphical models, deep learning models etc.) 
+                    to predict and interpret regulatory networks of gene expression involving sophisticated mechanisms, such as distal 
+                    enhancers, insulators, and boundary elements, for diverse panels of tissues, cell types and single cells. 
+                    Multi-omics features (epigenomics, transcriptomics, proteomics) are integrated to delineate the long-range 
+                    regulatory interactions and to derive systems biology insights.
+                  </p>
+
+                  <!-- 图片滚动窗口（carousel） -->
+                  <div id="researchCarousel1" class="carousel slide research-carousel">
+                     <ol class="carousel-indicators">
+                       <li data-target="#researchCarousel1" data-slide-to="0" class="active"></li>
+                       <li data-target="#researchCarousel1" data-slide-to="1"></li>
+                       <li data-target="#researchCarousel1" data-slide-to="2"></li>
+                     </ol>
+                   
+                     <div class="carousel-inner">
+                       <div class="item active">
+                        <div class="img-wrap">
+                         <img src="images/Research1_1.png" alt="Research figure 1-1">
+                        </div>
+                       </div>
+                       <div class="item">
+                        <div class="img-wrap">
+                         <img src="images/Research1_2.png" alt="Research figure 1-2">
+                        </div>
+                       </div>
+                       <div class="item">
+                        <div class="img-wrap">
+                         <img src="images/Research1_3.png" alt="Research figure 1-3">
+                        </div>
+                       </div>
+                     </div>
+                   
+                     <a class="left carousel-control" href="#researchCarousel1" data-slide="prev">&lsaquo;</a>
+                     <a class="right carousel-control" href="#researchCarousel1" data-slide="next">&rsaquo;</a>
+                   </div>
+               </section>
+
+                  <hr class="soft">
+
+                  <!-- 2 -->
+                  <h4>High-resolution reconstruction of spatial genome architectures in 3D space under specific cellular contexts</h4>
+                  <p>
+                    To foster 3D understandings of genome folding, beyond analyses of 1D DNA sequences and 2D chromatin contact maps, 
+                    we build computational and mathematical models to reconstruct the spatial configurations of genomes at high resolution 
+                    (e.g. 500bp and 1kb-resolution), based on large-scale Hi-C or related data cohorts. We quantitatively predict the 
+                    heterogeneous 3D genome configurations across cellular contexts (cell types, sub types, single cells) and analyze 
+                    the chromatin re-organization patterns at different scales.
+                  </p>
+
+                  <!-- 图片滚动窗口（carousel） -->
+                  <div id="researchCarousel2" class="carousel slide research-carousel">
+                     <ol class="carousel-indicators">
+                       <li data-target="#researchCarousel2" data-slide-to="0" class="active"></li>
+                       <li data-target="#researchCarousel2" data-slide-to="1"></li>
+                       <li data-target="#researchCarousel2" data-slide-to="2"></li>
+                     </ol>
+                   
+                     <div class="carousel-inner">
+                       <div class="item active">
+                        <div class="img-wrap">
+                         <img src="images/Research2_1.png" alt="Research figure 2-1">
+                        </div>
+                       </div>
+                       <div class="item">
+                        <div class="img-wrap">
+                         <img src="images/Research2_2.png" alt="Research figure 2-2">
+                        </div>
+                       </div>
+                       <div class="item">
+                        <div class="img-wrap">
+                         <img src="images/Research2_3.png" alt="Research figure 2-3">
+                        </div>
+                       </div>
+                     </div>
+                   
+                     <a class="left carousel-control" href="#researchCarousel2" data-slide="prev">&lsaquo;</a>
+                     <a class="right carousel-control" href="#researchCarousel2" data-slide="next">&rsaquo;</a>
+                   </div>
+               </section>
+
+                  <hr class="soft">
+
+                  <!-- 3 -->
+                  <h4>Decipher the functional effects of genetic variants on gene expression and complex traits</h4>
+                  <p>
+                    We design algorithms to predict the effects of genetic variants, especially distal non-coding SNPs, at the 
+                    molecular levels (i.e. gene expression) and at the organism levels (i.e. complex traits), by incorporating the 
+                    regulatory networks.
+                  </p>
+
+                  <!-- 图片滚动窗口（carousel） -->
+                  <div id="researchCarousel3" class="carousel slide research-carousel">
+                     <ol class="carousel-indicators">
+                       <li data-target="#researchCarousel3" data-slide-to="0" class="active"></li>
+                       <li data-target="#researchCarousel3" data-slide-to="1"></li>
+                     </ol>
+                   
+                     <div class="carousel-inner">
+                       <div class="item active">
+                        <div class="img-wrap">
+                         <img src="images/Research3_1.png" alt="Research figure 3-1">
+                        </div>
+                       </div>
+                       <div class="item">
+                        <div class="img-wrap">
+                         <img src="images/Research3_2.png" alt="Research figure 3-2">
+                        </div>
+                       </div>
+                     </div>
+                   
+                     <a class="left carousel-control" href="#researchCarousel3" data-slide="prev">&lsaquo;</a>
+                     <a class="right carousel-control" href="#researchCarousel3" data-slide="next">&rsaquo;</a>
+                   </div>
+               </section>
+
+
+                  <hr class="soft">
+
+                  <!-- 4 -->
+                  <h4>Building computational infrastructure for high-dimensional biological data</h4>
+                  <p>
+                    We build computational infrastructure for efficient, scalable and robust analyses of high-dimensional biological data, 
+                    such as spatial transcriptomics, scATAC-seq, scHi-C, Hi-C, proteomics, ChIP-seq and others.
+                  </p>
+
+
+                  <!-- 图片滚动窗口（carousel） -->
+                  <div id="researchCarousel4" class="carousel slide research-carousel">
+                     <ol class="carousel-indicators">
+                       <li data-target="#researchCarousel4" data-slide-to="0" class="active"></li>
+                       <li data-target="#researchCarousel4" data-slide-to="1"></li>
+                       <li data-target="#researchCarousel4" data-slide-to="2"></li>
+                     </ol>
+                   
+                     <div class="carousel-inner">
+                       <div class="item active">
+                        <div class="img-wrap">
+                         <img src="images/scientist-with-petri-dish.jpg" alt="Research figure 4-1">
+                        </div>
+                       </div>
+                       <div class="item">
+                        <div class="img-wrap">
+                         <img src="images/brainstorming-paper.jpg" alt="Research figure 4-2">
+                        </div>
+                       </div>
+                       <div class="item">
+                        <div class="img-wrap">
+                         <img src="images/man-with-microscope.jpg" alt="Research figure 4-3">
+                        </div>
+                       </div>
+                     </div>
+                   
+                     <a class="left carousel-control" href="#researchCarousel4" data-slide="prev">&lsaquo;</a>
+                     <a class="right carousel-control" href="#researchCarousel4" data-slide="next">&rsaquo;</a>
+                   </div>
+               </section>
+               <!-- ================== Software Section ================== -->
+               <section id="software">
+                  <div class="page-header">
+                     <h3>Software</h3>
+                  </div>
+
+                  <p>
+                     List of newly developed software packages at MSU that are now released to public. 
+                     Other newly developed software packages are not included here pending peer-review of manuscripts.
+                  </p>
+
+                  <style>
+                     .software-item {
+                        margin-bottom: 28px;
+                        padding: 15px 20px;
+                        border-left: 4px solid #2b7cff;
+                        background: #f7f9fc;
+                        border-radius: 6px;
+                     }
+                     .software-item h4 {
+                        margin-top: 0;
+                        font-weight: 700;
+                     }
+                     .software-desc {
+                        margin: 8px 0 12px 0;
+                     }
+                     .software-btn a {
+                        display: inline-block;
+                        padding: 6px 14px;
+                        background: #2b7cff;
+                        color: white !important;
+                        border-radius: 4px;
+                        font-size: 13px;
+                        text-decoration: none;
+                     }
+                     .software-btn a:hover {
+                        background: #1a5fcc;
+                     }
+                  </style>
+
+                  <!-- Tensor-FLAMINGO -->
+                  <div class="software-item">
+                     <h4>Tensor-FLAMINGO</h4>
+                     <p class="software-desc">
+                        Single-cell specific high-resolution reconstruction of three-dimensional genome structures 
+                        based on sparse chromatin contact maps.
+                     </p>
+                     <div class="software-btn">
+                        <a href="https://github.com/wangjr03/Tensor-FLAMINGO" target="_blank">GitHub Repository</a>
+                     </div>
+                  </div>
+
+                  <!-- SPACE -->
+                  <div class="software-item">
+                     <h4>SPACE</h4>
+                     <p class="software-desc">
+                        Spatial domain detection based on spatially variable gene clustering with 
+                        cell-type effect adjustments.
+                     </p>
+                     <div class="software-btn">
+                        <a href="https://github.com/wangjr03/SPACE" target="_blank">GitHub Repository</a>
+                     </div>
+                  </div>
+
+                  <!-- FLAMINGO -->
+                  <div class="software-item">
+                     <h4>FLAMINGO</h4>
+                     <p class="software-desc">
+                        Three-dimensional genome structure reconstruction algorithm based on chromatin contact maps.
+                     </p>
+                     <div class="software-btn">
+                        <a href="https://github.com/wangjr03/FLAMINGO" target="_blank">GitHub Repository</a>
+                     </div>
+                  </div>
+
+                  <!-- BayesKAT -->
+                  <div class="software-item">
+                     <h4>BayesKAT</h4>
+                     <p class="software-desc">
+                        Bayesian probabilistic model and efficient inference algorithm to automatically 
+                        select optimal kernel for kernel-based genetic association tests in complex diseases.
+                     </p>
+                     <div class="software-btn">
+                        <a href="https://github.com/wangjr03/BayesKAT" target="_blank">GitHub Repository</a>
+                     </div>
+                  </div>
+
+                  <!-- ProTECT -->
+                  <div class="software-item">
+                     <h4>ProTECT</h4>
+                     <p class="software-desc">
+                        Supervised graph-based prediction algorithm for long-range regulatory links 
+                        based on complex combinatorial PPI signatures.
+                     </p>
+                     <div class="software-btn">
+                        <a href="https://github.com/wangjr03/PPI-based_prediction_enh_gene_links" target="_blank">GitHub Repository</a>
+                     </div>
+                  </div>
+
+                  <!-- REGISTER-ME -->
+                  <div class="software-item">
+                     <h4>REGISTER-ME</h4>
+                     <p class="software-desc">
+                        MCMC algorithm to discover novel functional elements in the human genome 
+                        for highly repetitive regions.
+                     </p>
+                     <div class="software-btn">
+                        <a href="https://github.com/wangjr03/RegisTER-ME" target="_blank">GitHub Repository</a>
+                     </div>
+                  </div>
+
+                  <!-- APRIL -->
+                  <div class="software-item">
+                     <h4>APRIL</h4>
+                     <p class="software-desc">
+                        Novel disease-associated gene prediction software based on 
+                        long-range regulatory networks.
+                     </p>
+                     <div class="software-btn">
+                        <a href="https://github.com/wangjr03/APRIL" target="_blank">GitHub Repository</a>
+                     </div>
+                  </div>
+
+               </section>
+
+               <!-- ================== Collaborators Section ================== -->
+               <section id="collaborators">
+                  <div class="page-header">
+                  <h3>Collaborators</h3>
+                  </div>
+               
+                  <p>
+                  We are excited to work with our collaborators across different scientific domains to understand the biology of 
+                  functional genomics (immune diversification, genome duplication, repetitive DNA &amp; transposable elements), 
+                  evolution, molecular genetics, differentiation and development; and to understand the biomedical mechanisms of 
+                  complex diseases (cancer, Alzheimer's disease, autoimmune diseases etc).
+                  </p>
+               
+                  <p>
+                  Our current collaborators come from a broad range of institutions:
+                  </p>
+               
+                  <!-- 3 × 4 logo grid -->
+                  <div class="collab-grid">
+                  <div class="collab-item">
+                     <img src="images/columbia_uni.png" alt="Columbia University">
+                  </div>
+                  <div class="collab-item">
+                     <img src="images/upitt.webp" alt="University of Pittsburgh">
+                  </div>
+                  <div class="collab-item">
+                     <img src="images/Georgia-Tech-Symbol.png" alt="Georgia Tech">
+                  </div>
+                  <div class="collab-item">
+                     <img src="images/henry-ford-logo.jpg" alt="Henry Ford Health">
+                  </div>
+                  <div class="collab-item">
+                     <img src="images/uthealth.png" alt="UTHealth">
+                  </div>
+                  <div class="collab-item">
+                     <img src="images/nyu_logo.png" alt="New York University">
+                  </div>
+                  <div class="collab-item">
+                     <img src="images/Ohio-State-University-Symbol.png" alt="Ohio State University">
+                  </div>
+                  <div class="collab-item">
+                     <img src="images/OHSU.png" alt="Oregon Health &amp; Science University">
+                  </div>
+                  <div class="collab-item">
+                     <img src="images/ucdavis.png" alt="UC Davis">
+                  </div>
+                  <div class="collab-item">
+                     <img src="images/UGA.png" alt="University of Georgia">
+                  </div>
+                  <div class="collab-item">
+                     <img src="images/university_of_nebraska_medical_center.png" alt="University of Nebraska Medical Center">
+                  </div>
+                  </div>
+               </section>
+
+               <hr>
+            </div>
+         </div>
+      </div>
+
+      <footer id="footer">
+         <div class="container-fluid">
+            <div class="row-fluid">
+               <div class="span5">
+                  <h3>Contact Information</h3>
+                  <p><b>Office Hours: </b>Monday-Friday (8.00am - 5.00pm)</p>
+                  <p><b>Cell: </b>517-432-0370</p>
+                  <a href="mailto:wangj164@msu.edu">Email</a>
+               </div>
+               <div class="span2">
+                  <a href="https://msu.edu/"><img src="thumbs/Michigan-State-university-logo-03.png" alt="research-lab-logo"/></a>
+               </div>
+               <div class="span5">
+                  <h3>Address</h3>
+                  <p>2507J Engineering Bldg<br>
+                     428 S Shaw Ln<br>
+                     East Lansing, Michigan<br>
+                     MI 48824
+                  </p>
+                  <a href="http://maps.google.com/">Show Map</a>
+               </div>
+            </div>
+         </div>
+      </footer>
+
+      <!-- Le javascript
+         ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="js/jquery-1.9.1.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script>
+         $(document).ready(function() {
+             $(document.body).scrollspy({
+                 target: "#navparent"
+             });
+
+             // 启动轮播
+             $('.research-carousel').carousel({
+                 interval: 4000   // 每 4 秒切换；如果只想手动切换就改成 false
+             });
+         });
+      </script>
+   </body>
+</html>
