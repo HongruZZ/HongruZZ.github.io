@@ -44,15 +44,23 @@
             max-width: 1000px;
             margin: 0 auto 30px auto;
          }
-   
+
          .grants-row {
-            display: flex;
-            justify-content: center;
-            gap: 24px;           /* logo 之间的间距 */
-            margin-bottom: 16px;
-            flex-wrap: wrap;     /* 小屏幕自动换行 */
+         display: flex;
+         justify-content: center;
+         align-items: center;   /* ★关键 */
+         gap: 24px;
+         margin-bottom: 16px;
+         flex-wrap: wrap;
          }
-   
+
+         .grant-logo {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         height: 100px;         /* ★统一容器高度 */
+         }
+  
          .grant-logo img {
             display: block;
          }
@@ -66,6 +74,27 @@
          .grant-logo-small img {
             height: 45px;        /* 比上面的小一档 */
          }
+         /* ===== Fine tuning for specific grant logos ===== */
+
+         /* NSF 官方 logo：稍微大一点 */
+         .grant-logo-nsf img {
+         height: 90px;   /* 原来比如是 80px，这里 +10 */
+         }
+
+         /* NSF CAREER：稍微大一点 */
+         .grant-logo-career img {
+         height: 90px;
+         }
+
+         /* NIAID：稍微小一点 */
+         .grant-logo-niaid img {
+         height: 40px;   /* 原来 80px，这里 -40 */
+         }
+
+         .grant-logo-msu-foundation img {
+         height: 120px;   /* 原来 80px，这里 +40 */
+         }
+
 
          /* ================== Custom Header Banner ================== */
          #overview {
@@ -147,14 +176,14 @@
                      <div class="item">
                         <img src="images/building-msu.jpg" class="carousel-image" alt="">
                         <div class="carousel-caption">
-                           <h4>Engineering College Building Photo</h4>
+                           <h4>Engineering College Building</h4>
                            <p></p>
                         </div>
                      </div>
                      <div class="item">
                         <img src="images/building-CMSE.jpg" class="carousel-image" alt="">
                         <div class="carousel-caption">
-                           <h4>CMSE Department Building Photo</h4>
+                           <h4>CMSE Department Building</h4>
                            <p></p>
                         </div>
                      </div>
@@ -220,10 +249,10 @@
                            <div class="grant-logo grant-logo-large">
                               <img src="images/NIGMS.png" alt="NIGMS">
                            </div>
-                           <div class="grant-logo grant-logo-large">
+                           <div class="grant-logo grant-logo-large grant-logo-nsf">
                               <img src="images/NSF_Official_logo_High_Res_1200ppi.png" alt="NSF">
                            </div>
-                           <div class="grant-logo grant-logo-large">
+                           <div class="grant-logo grant-logo-large grant-logo-career">
                               <img src="images/NSF CAREER.jfif" alt="NSF CAREER">
                            </div>
                         </div>
@@ -233,13 +262,13 @@
                            <div class="grant-logo grant-logo-large">
                               <img src="images/NIEHS.png" alt="NIEHS">
                            </div>
-                           <div class="grant-logo grant-logo-large">
+                           <div class="grant-logo grant-logo-large grant-logo-niaid">
                               <img src="images/NIAID.png" alt="NIAID">
                            </div>
                            <div class="grant-logo grant-logo-large">
                               <img src="images/MSU-Seal_Green-RGB.jpg" alt="MSU">
                            </div>
-                           <div class="grant-logo grant-logo-large">
+                           <div class="grant-logo grant-logo-large grant-logo-msu-foundation">
                               <img src="images/MSU Foundation.png" alt="MSU Foundation">
                            </div>
                         </div>
